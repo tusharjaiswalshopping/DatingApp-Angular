@@ -21,7 +21,7 @@ _context = context;
 _tokenService = tokenService;
 }
 
-[HttpPost]
+[HttpPost("register")]
 public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto){
 
     if(await UserExists(registerDto.Username)){
@@ -48,7 +48,7 @@ return new UserDto
 private async Task<bool> UserExists(string username){
 return await _context.Users.AnyAsync(x=>x.UserName.ToLower() == username.ToLower());
 }
-[HttpPost]
+[HttpPost("login")]
 
 public async Task<ActionResult<UserDto>> Login(LoginDto loginDto){
 
