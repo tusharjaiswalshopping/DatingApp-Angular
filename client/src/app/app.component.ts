@@ -5,13 +5,14 @@ import { RouterOutlet } from '@angular/router';
 import { NavComponent } from "./nav/nav.component";
 import { AccountService } from './_services/account.service';
 import { HomeComponent } from "./home/home.component";
+import { NgxSpinnerComponent } from 'ngx-spinner';
 
 @Component({
     selector: 'app-root',
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
-    imports: [RouterOutlet, NavComponent, HomeComponent]
+    imports: [RouterOutlet, NavComponent, HomeComponent,NgxSpinnerComponent]
 })
 export class AppComponent implements OnInit {
   
@@ -21,7 +22,7 @@ export class AppComponent implements OnInit {
   users:any
 
   ngOnInit(): void {
-    this.getUsers();
+    
     this.setCurrentUser();
   }
 
@@ -32,14 +33,5 @@ export class AppComponent implements OnInit {
     this.accountservice.CurrentUser.set(user);
 
   }
-  getUsers(){
-    this.http.get('https://localhost:5255/api/users').subscribe(
-      {
-        next: response=> this.users = response,
-        error: error => console.log(error),
-        complete: () => console.log('Request has completed')
-    
-      }
-    );
-  }
+ 
 }

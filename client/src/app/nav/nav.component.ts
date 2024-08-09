@@ -9,7 +9,7 @@ import { TitleCasePipe } from '@angular/common';
 @Component({
   selector: 'app-nav',
   standalone: true,
-  imports: [FormsModule, BsDropdownModule, RouterLink, RouterLinkActive,TitleCasePipe],
+  imports: [FormsModule, BsDropdownModule, RouterLink, RouterLinkActive, TitleCasePipe],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css'
 })
@@ -21,9 +21,8 @@ export class NavComponent {
 
   login() {
     this.accountservice.login(this.model).subscribe({
-      next: () => {
+      next: _ => {
         this.router.navigateByUrl('/members');
-
       },
       error: error => this.toastr.error(error.error)
 
@@ -31,6 +30,6 @@ export class NavComponent {
   }
   logout() {
     this.accountservice.logout();
-    this.router.navigateByUrl('/members');
+    this.router.navigateByUrl('/');
   }
 }

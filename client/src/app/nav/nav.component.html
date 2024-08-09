@@ -4,7 +4,7 @@
       
       
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
-          @if (true) {
+          @if (accountservice.CurrentUser()) {
             <li class="nav-item">
               <a routerLink="/members" routerLinkActive="active" class="nav-link">Matches</a>
             </li>
@@ -17,6 +17,9 @@
               <a routerLink="/messages" routerLinkActive="active" class="nav-link">Messages</a>
             </li>
             }
+            <li class="nav-item">
+              <a routerLink="/errors" routerLinkActive="active" class="nav-link">Errors</a>
+            </li>
           </ul>
       
 
@@ -26,7 +29,7 @@
               Welcome {{accountservice.CurrentUser()?.username | titlecase}}
             </a>
             <div *dropdownMenu class="dropdown-menu">
-                <a class="dropdown-item">Edit profile</a>
+                <a routerLink="/member/edit" class="dropdown-item">Edit profile</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" (click)="logout()">Logout</a>
             </div>
@@ -35,7 +38,7 @@
 
        @if (!accountservice.CurrentUser()) {
         <form #loginForm = "ngForm" (ngSubmit)="login()" class="d-flex" autocomplete="off">
-            <input name="username" [(ngModel)] ="model.username" class="form-control me-2" placeholder="UserName">
+            <input name="username" [(ngModel)] ="model.username" class="form-control me-2" placeholder="Username">
             <input name="password" [(ngModel)]="model.password" class="form-control me-2" placeholder="Password" type="password">
             <button class="btn btn-success" type="submit">Login</button>
           </form>
