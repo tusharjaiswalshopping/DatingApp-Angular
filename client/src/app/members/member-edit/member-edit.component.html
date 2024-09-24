@@ -30,12 +30,12 @@
 
                 <div>
                     <strong>Last Active</strong>
-                    <p>{{member.lastActive}}</p>
+                    <p>{{member.lastActive | timeago}}</p>
                 </div>
 
                 <div>
                     <strong>Member since:</strong>
-                    <p>{{member.created}}</p>
+                    <p>{{member.created | date:'longDate'}}</p>
                 </div>
             </div>
             <div class="card-footer">
@@ -72,7 +72,9 @@
             </tab>
 
             <tab heading="Edit Photos">
-                Photos edit will go here.
+                <app-photo-editor [member]="member"
+                (memberChange)="onMemberChange($event)"
+                ></app-photo-editor>
             </tab>
 
         </tabset>
